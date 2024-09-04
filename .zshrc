@@ -30,6 +30,11 @@ zstyle :compinstall filename '/home/nf/.zshrc'
 autoload -Uz compinit
 compinit
 
+# Pyenv shims
+export PYENV_ROOT="$HOME/.pyenv"
+[[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
+eval "$(pyenv init -)"
+
 # Plugins and Prompt
 eval "$(starship init zsh)"
 source /usr/share/zsh-autosuggestions/zsh-autosuggestions.zsh

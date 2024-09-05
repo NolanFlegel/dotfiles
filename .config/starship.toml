@@ -3,11 +3,12 @@
 # Timeout for commands executed by starship (in milliseconds).
 command_timeout = 3600000
 
-palette = "solarized"
+palette = "mocha"
 right_format = """$all"""
 format = """
+$os\
+$username\
 $directory\
-[](fg:#268bd2)\
 $character\
 """
 add_newline = false
@@ -17,161 +18,147 @@ disabled = false
 
 [username]
 show_always = true
-style_user = "bg:#268bd2"
-style_root = "bg:#002b36"
-format = '[$user ]($style)'
+style_user = "fg:text"
+style_root = "bold red"
+format = "[$user]($style)"
 disabled = true
 
 [os]
-style = "bg:#9A348E"
+style = "fg:blue"
 disabled = true # Disabled by default
+symbols.Fedora = " "
 
 [directory]
-style = "bg:#268bd2"
-format = "[ $path ]($style)"
+style = "fg:blue"
+format = "[ $path]($style)"
 truncation_length = 2
 truncation_symbol = "…/"
 
+[git_branch]
+symbol = ""
+style = "subtext0" 
+format = '[ $symbol $branch ]($style)'
+
+[git_status]
+style = "bold red"
+#format = '[$all_status$ahead_behind ]($style)'
+ahead = "⇡${count}"
+diverged = "⇕⇡${ahead_count}⇣${behind_count}"
+behind = "⇣${count}"
+deleted = "x"
+
+[git_metrics]
+format = "([+$added]($added_style)[+$deleted]($deleted_style))"
+added_style = "fg:green"
+deleted_style = "fg:bold red"
+disabled = true
+
 [c]
 symbol = " "
-style = "bg:#4c566a"
+style = "bg:base3"
 format = '[ $symbol ($version) ]($style)'
 
 [python]
 symbol = " "
-style = "bg:#4c566a"
+style = "bg:base3"
 format = '[ $symbol ($version) ]($style)'
 
 [docker_context]
 symbol = " "
-style = "bg:#5e81ac"
+style = "bg:sapphire"
 format = '[ $symbol $context ]($style) $path'
 
 [elixir]
 symbol = " "
-style = "bg:#434c5e"
+style = "bg:base2"
 format = '[ $symbol ($version) ]($style)'
 
 [elm]
 symbol = " "
-style = "bg:#434c5e"
+style = "bg:base2"
 format = '[ $symbol ($version) ]($style)'
-
-[git_branch]
-symbol = ""
-style = "bg:#859900" #859900
-format = '[ $symbol $branch ]($style)'
-
-[git_status]
-style = "bg:#b58900"
-format = '[$all_status$ahead_behind ]($style)'
-
-[git_metrics]
-format = "([+$added]($added_style))[]($added_style)"
-added_style = "fg:#1C3A5E bg:#b58900"
-deleted_style = "fg:bright-red bg:235"
-disabled = false
 
 [golang]
 symbol = " "
-style = "bg:#434c5e"
+style = "bg:base2"
 format = '[ $symbol ($version) ]($style)'
 
 [haskell]
 symbol = " "
-style = "bg:#434c5e"
+style = "bg:base2"
 format = '[ $symbol ($version) ]($style)'
 
 [java]
 symbol = " "
-style = "bg:#434c5e"
+style = "bg:base2"
 format = '[ $symbol ($version) ]($style)'
 
 [julia]
 symbol = " "
-style = "bg:#434c5e"
+style = "bg:base2"
 format = '[ $symbol ($version) ]($style)'
 
 [nodejs]
 symbol = ""
-style = "bg:#434c5e"
+style = "bg:base2"
 format = '[ $symbol ($version) ]($style)'
 
 [nim]
 symbol = " "
-style = "bg:##434c5e"
+style = "bg:base2"
 format = '[ $symbol ($version) ]($style)'
 
 [rust]
 symbol = ""
-style = "bg:#434c5e"
+style = "bg:base2"
 format = '[ $symbol ($version) ]($style)'
 
 [scala]
 symbol = " "
-style = "bg:#434c5e"
+style = "bg:base2"
 format = '[ $symbol ($version) ]($style)'
 
 [time]
 disabled = true
 time_format = "%R" # Hour:Minute Format
-style = "bg:#6272a4"
+style = "bg:overlay"
 format = '[  $time ]($style)'
 	
 [character]
-success_symbol = ''
-error_symbol = '[ 󰬅](bold red)'
-#style = "bg:#6272a4"
+success_symbol = "[ ❯](fg:blue)"
+error_symbol = "[ ✖](bold red)"
 
 [cmd_duration]
 min_time = 500
-format = ' [$duration](#6272a4)'
+format = ' [$duration](overlay)'
 # [cmd_duration]
 # format = "[  $duration ]($style)"
 # style = "fg:bright-white bg:18"
 
-[palettes.catppuccin_mocha]
-rosewater = "#f5e0dc"
-flamingo = "#f2cdcd"
-pink = "#f5c2e7"
-mauve = "#cba6f7"
-red = "#f38ba8"
-maroon = "#eba0ac"
-peach = "#fab387"
-yellow = "#f9e2af"
-green = "#a6e3a1"
-teal = "#94e2d5"
-sky = "#89dceb"
-sapphire = "#74c7ec"
-blue = "#89b4fa"
-lavender = "#b4befe"
-text = "#cdd6f4"
-subtext1 = "#bac2de"
-subtext0 = "#a6adc8"
-overlay2 = "#9399b2"
-overlay1 = "#7f849c"
-overlay0 = "#6c7086"
-surface2 = "#585b70"
-surface1 = "#45475a"
-surface0 = "#313244"
-base = "#1e1e2e"
-mantle = "#181825"
-crust = "#11111b"
 
-[palettes.solarized]
-base03 =    "#002b36"
-base02 =    "#073642"
-base01 =    "#586e75"
-base00 =    "#657b83"
-base0 =     "#839496"
-base1 =     "#93a1a1"
-base2 =     "#eee8d5"
-base3 =     "#fdf6e3"
-yellow =    "#b58900"
-orange =    "#cb4b16"
-red =       "#dc322f"
-magenta =   "#d33682"
-violet =    "#6c71c4"
-blue =      "#268bd2"
-cyan =      "#2aa198"
-green =     "#859900"
+[palettes.mocha]
+red       ="#dc322f"
+maroon    ="#eba0ac"
+peach     ="#fab387"
+yellow    ="#fff017"
+green	  ="#a6e3a1"
+teal	  ="#94e2d5"
+cloud     ="#89dceb"
+sapphire  ="#74c7ec"
+sky 	  ="#89b4fa"
+blue      ="#268bd2"
+cyan      ="#2aa198"
+lavender  ="#b4befe"
+text	  ="#cdd6f4"
+subtext1  ="#bac2de"
+subtext0  ="#a6adc8"
+overlay2  ="#9399b2"
+overlay1  ="#7f849c"
+overlay   ="#6c7086"
+base3	  ="#585b70"
+base2	  ="#45475a"
+base1	  ="#313244"
+base0	  ="#1e1e2e"
+smoke     ="#181825"
+charcoal  ="#11111b"
+
